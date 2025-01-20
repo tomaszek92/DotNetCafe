@@ -36,3 +36,8 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+
+offer_searcher/markdowns/
+
+# Ignore .env file
+.env

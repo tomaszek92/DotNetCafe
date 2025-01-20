@@ -15,7 +15,7 @@ if (app.Environment.IsDevelopment())
     // /scalar/v1
     app.MapScalarApiReference(options =>
     {
-        // options.Theme = ScalarTheme.DeepSpace;
+        options.Theme = ScalarTheme.DeepSpace;
     });
 
     // /nswag

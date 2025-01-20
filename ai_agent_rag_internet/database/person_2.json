@@ -1,0 +1,117 @@
+[
+    {
+      "id": 4,
+      "location": {
+        "city": "Paris",
+        "country": "France",
+        "coordinates": {
+          "latitude": 48.8566,
+          "longitude": 2.3522
+        }
+      },
+      "date": {
+        "start": "2024-06-10",
+        "end": "2024-06-15"
+      },
+      "details": {
+        "travel_type": "romantic getaway",
+        "companions": ["Emma"],
+        "transport": "train",
+        "highlights": ["Eiffel Tower", "Louvre Museum", "Montmartre"],
+        "rating": 4.7,
+        "notes": "Charming streets, beautiful museums, and unforgettable views!"
+      }
+    },
+    {
+      "id": 5,
+      "location": {
+        "city": "New York",
+        "country": "USA",
+        "coordinates": {
+          "latitude": 40.7128,
+          "longitude": -74.0060
+        }
+      },
+      "date": {
+        "start": "2023-08-05",
+        "end": "2023-08-10"
+      },
+      "details": {
+        "travel_type": "city exploration",
+        "companions": ["Alice", "Bob"],
+        "transport": "plane",
+        "highlights": ["Central Park", "Times Square", "Statue of Liberty"],
+        "rating": 4.6,
+        "notes": "A vibrant city full of energy, culture, and entertainment!"
+      }
+    },
+    {
+      "id": 6,
+      "location": {
+        "city": "Cape Town",
+        "country": "South Africa",
+        "coordinates": {
+          "latitude": -33.9249,
+          "longitude": 18.4241
+        }
+      },
+      "date": {
+        "start": "2023-11-20",
+        "end": "2023-11-25"
+      },
+      "details": {
+        "travel_type": "adventure",
+        "companions": ["David", "Sophia"],
+        "transport": "plane",
+        "highlights": ["Table Mountain", "Robben Island", "Kirstenbosch Gardens"],
+        "rating": 4.9,
+        "notes": "Incredible natural beauty and rich history!"
+      }
+    },
+    {
+      "id": 7,
+      "location": {
+        "city": "Sydney",
+        "country": "Australia",
+        "coordinates": {
+          "latitude": -33.8688,
+          "longitude": 151.2093
+        }
+      },
+      "date": {
+        "start": "2024-01-10",
+        "end": "2024-01-15"
+      },
+      "details": {
+        "travel_type": "vacation",
+        "companions": ["Lucas", "Mia"],
+        "transport": "plane",
+        "highlights": ["Sydney Opera House", "Bondi Beach", "Harbour Bridge"],
+        "rating": 4.8,
+        "notes": "Stunning landscapes and vibrant atmosphere!"
+      }
+    },
+    {
+      "id": 8,
+      "location": {
+        "city": "London",
+        "country": "United Kingdom",
+        "coordinates": {
+          "latitude": 51.5074,
+          "longitude": -0.1278
+        }
+      },
+      "date": {
+        "start": "2023-04-01",
+        "end": "2023-04-05"
+      },
+      "details": {
+        "travel_type": "cultural exploration",
+        "companions": ["Oliver", "Charlotte"],
+        "transport": "train",
+        "highlights": ["Big Ben", "British Museum", "Buckingham Palace"],
+        "rating": 4.7,
+        "notes": "A city full of history, culture, and iconic landmarks."
+      }
+    }
+  ]
