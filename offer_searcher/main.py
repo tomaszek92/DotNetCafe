@@ -9,6 +9,7 @@ import re
 import os
 import requests
 import xml.etree.ElementTree as ET
+import random
 
 # Set your OpenAI API key
 openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -106,23 +107,64 @@ async def search_matching_results(prompt: str):
     search_result = qdrant_client.search(
         collection_name="job_offers",
         query_vector=prompt_embedding,
-        limit=5  # Adjust the number of results as needed
+        limit=20
     )
     
     # Print or process the matching results
     for result in search_result:
         print(f"Match: {result.payload['url']} with score {result.score}")
 
+    # Filter results with score >= 0.5
+    filtered_results = [result for result in search_result if result.score >= 0.5]
+    
+    # Collect markdown contents for filtered results
+    markdown_contents = []
+    for result in filtered_results:
+        url = result.payload['url']
+        markdown_path = create_markdown_path(url)
+        try:
+            with open(markdown_path, "r") as file:
+                markdown_content = file.read()
+                markdown_contents.append((url, markdown_content))
+        except FileNotFoundError:
+            print(f"Markdown file not found for URL: {url}")
+    
+    # Create a new prompt for ChatGPT
+    if markdown_contents:
+        chatgpt_prompt = "Given the following job descriptions, select the best match for the prompt: '{}'.\n\n".format(prompt)
+        for url, content in markdown_contents:
+            chatgpt_prompt += f"URL: {url}\nDescription:\n{content}\n\n"
+        
+        # Send the prompt to ChatGPT
+        client = OpenAI(api_key=openai_api_key)
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": "You are a the recruiter assistant. You need to find the best match."},
+                {"role": "user", "content": chatgpt_prompt}
+            ]
+        )
+        
+        # Print the best URL as determined by ChatGPT
+        print(f"Best URL according to ChatGPT: {response.choices[0].message.content}")
+    else:
+        print("No suitable matches found.")
+
 def fetch_job_offer_urls() -> list:
     response = requests.get("https://justjoin.it/sitemaps/active-jobs/part0.xml")
     response.raise_for_status()
     root = ET.fromstring(response.content)
     urls = [url.find('{http://www.sitemaps.org/schemas/sitemap/0.9}loc').text for url in root.findall('{http://www.sitemaps.org/schemas/sitemap/0.9}url')]
-    return urls[:100]
+    
+    # Randomly select 100 URLs
+    if len(urls) > 100:
+        urls = random.sample(urls, 100)
+    
+    return urls
 
 async def main():
-    # job_offer_urls = fetch_job_offer_urls()
-    # await process_urls(job_offer_urls, save_markdown=True)
+    job_offer_urls = fetch_job_offer_urls()
+    await process_urls(job_offer_urls, save_markdown=True)
 
     await search_matching_results(prompt=".net software developer in Warsaw")
 
