@@ -41,3 +41,5 @@ offer_searcher/markdowns/
 
 # Ignore .env file
 .env
+
+job_advertisement_searcher/data/

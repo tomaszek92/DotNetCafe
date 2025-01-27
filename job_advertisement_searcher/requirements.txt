@@ -1,0 +1,5 @@
+pandas
+html2text
+ollama
+numpy
+qdrant-client 
